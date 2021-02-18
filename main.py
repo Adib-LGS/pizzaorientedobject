@@ -16,15 +16,35 @@ class Pizza:
         print()
 
 
-"""pizza1 = Pizza("4 seasons", 10.50, ("mozza", "mushrooms", "spinach", "olive oil"))
-pizza1.show()"""
+class MyPizza(Pizza):
 
-pizzas = (
+    def __init__(self):
+        super().__init__("Eddit", 0, [])
+        self.ask_user_ingredients()
+
+    def ask_user_ingredients(self):
+        while True:
+            ingredients = input("Add some ingredients (or press Enter to exit) : ")
+            if ingredients == "":
+                return  # exit from method
+            self.ingredients.append(ingredients)
+            print(f"You've added {len(self.ingredients)} ingredients : {self.ingredients}")
+
+
+pizzas = [
     Pizza("4 seasons", 10.50, ("mozza", "mushrooms", "spinach", "olive oil"), True),
     Pizza("liberta", 11.50, ("tuna", "eggs", "onions", "tomatoes")),
     Pizza("samoan", 09.50, ("chiken", "potatoes", "mustard", "salad")),
-)
+    MyPizza()
+]
+
+
+def sort_pizzas(e):
+    return len(e.name)
+
+
+# pizzas.sort(key=sort_pizzas, reverse=True)
+
 
 for i in pizzas:
-    if i.price > 10:
-        i.show()
+    i.show()
