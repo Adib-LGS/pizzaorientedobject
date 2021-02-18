@@ -17,12 +17,18 @@ class Pizza:
 
 
 class MyPizza(Pizza):
+    BASE_PRICE = 8
+    INGREDIENT_PRICE: float = 1.50
 
-    def __init__(self):
+    def __init__(self, myorder_number):
+        self.myorder_number = myorder_number
         super().__init__("Eddit", 0, [])
         self.ask_user_ingredients()
+        self.amount()
 
     def ask_user_ingredients(self):
+        print()
+        print(f"Ingredients for the eddited pizza {self.myorder_number}")
         while True:
             ingredients = input("Add some ingredients (or press Enter to exit) : ")
             if ingredients == "":
@@ -30,12 +36,18 @@ class MyPizza(Pizza):
             self.ingredients.append(ingredients)
             print(f"You've added {len(self.ingredients)} ingredients : {self.ingredients}")
 
+    def amount(self):
+        if len(self.ingredients) > 0:
+            self.price = self.BASE_PRICE + len(self.ingredients)*self.INGREDIENT_PRICE
+        else:
+            self.price = self.BASE_PRICE
+
 
 pizzas = [
     Pizza("4 seasons", 10.50, ("mozza", "mushrooms", "spinach", "olive oil"), True),
     Pizza("liberta", 11.50, ("tuna", "eggs", "onions", "tomatoes")),
     Pizza("samoan", 09.50, ("chiken", "potatoes", "mustard", "salad")),
-    MyPizza()
+    MyPizza(1)
 ]
 
 
