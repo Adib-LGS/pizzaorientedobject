@@ -19,10 +19,12 @@ class Pizza:
 class MyPizza(Pizza):
     BASE_PRICE = 8
     INGREDIENT_PRICE: float = 1.50
+    last_order_number = 0
 
-    def __init__(self, myorder_number):
-        self.myorder_number = myorder_number
-        super().__init__("Eddit", 0, [])
+    def __init__(self):
+        MyPizza.last_order_number += 1  # All the class
+        self.myorder_number = MyPizza.last_order_number
+        super().__init__("Eddit " + str(self.myorder_number), 0, [])
         self.ask_user_ingredients()
         self.amount()
 
@@ -47,7 +49,7 @@ pizzas = [
     Pizza("4 seasons", 10.50, ("mozza", "mushrooms", "spinach", "olive oil"), True),
     Pizza("liberta", 11.50, ("tuna", "eggs", "onions", "tomatoes")),
     Pizza("samoan", 09.50, ("chiken", "potatoes", "mustard", "salad")),
-    MyPizza(1)
+    MyPizza()
 ]
 
 
